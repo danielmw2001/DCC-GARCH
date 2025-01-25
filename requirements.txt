@@ -1,3 +1,16 @@
+numpy @ file:///C:/b/abs_c1ywpu18ar/croot/numpy_and_numpy_base_1708638681471/work/dist/numpy-1.26.4-cp312-cp312-win_amd64.whl#sha256=becc06674317799ad0165a939a7613809d0bee9bd328a1e4308c57c39cacf08c
+numpydoc @ file:///C:/b/abs_bbspp5l8vu/croot/numpydoc_1718279185573/work
+appdirs==1.4.4
+arch==7.2.0
+archspec @ file:///croot/archspec_1709217642129/work
+scikit-image @ file:///C:/b/abs_85dh_ywewv/croot/scikit-image_1726762076100/work
+scikit-learn @ file:///C:/b/abs_aajc9f7v6r/croot/scikit-learn_1722067652693/work/dist/scikit_learn-1.5.1-cp312-cp312-win_amd64.whl#sha256=96ed6defb86c154d2ff360afdbf0c37c33c4c729d4a15c9d8ada0b70fd817816
+scipy @ file:///C:/b/abs_efv75hqhju/croot/scipy_1717521501389/work/dist/scipy-1.13.1-cp312-cp312-win_amd64.whl#sha256=b29dba691773ea983857b31cad894f31623348583937b6f03783facfd7abc734
+yfinance==0.2.52
+matplotlib==3.9.2
+
+
+
 alabaster @ file:///C:/b/abs_45ba4vacaj/croot/alabaster_1718201502252/work
 altair @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/altair_1699497320503/work
 anaconda-anon-usage @ file:///C:/b/abs_c3w_h1zzjg/croot/anaconda-anon-usage_1710965204622/work
@@ -8,9 +21,6 @@ anaconda-navigator @ file:///C:/b/abs_a5gzce6vy0/croot/anaconda-navigator_172770
 anaconda-project @ file:///C:/b/abs_95s0l9dwvd/croot/anaconda-project_1706049257687/work
 annotated-types @ file:///C:/b/abs_0dmaoyhhj3/croot/annotated-types_1709542968311/work
 anyio @ file:///C:/b/abs_847uobe7ea/croot/anyio_1706220224037/work
-appdirs==1.4.4
-arch==7.2.0
-archspec @ file:///croot/archspec_1709217642129/work
 argon2-cffi @ file:///opt/conda/conda-bld/argon2-cffi_1645000214183/work
 argon2-cffi-bindings @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/argon2-cffi-bindings_1699549801117/work
 arrow @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/arrow_1699549851004/work
@@ -155,7 +165,6 @@ lz4 @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/lz4_16995595
 Markdown @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/markdown_1699503092856/work
 markdown-it-py @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/markdown-it-py_1699473886965/work
 MarkupSafe @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/markupsafe_1707425732791/work
-matplotlib==3.9.2
 matplotlib-inline @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/matplotlib-inline_1699484796387/work
 mccabe @ file:///opt/conda/conda-bld/mccabe_1644221741721/work
 mdit-py-plugins @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/mdit-py-plugins_1699559788389/work
@@ -283,9 +292,6 @@ ruamel-yaml-conda @ file:///C:/Users/dev-admin/perseverance-python-buildout/croo
 ruamel.yaml @ file:///C:/b/abs_0cunwx_ww6/croot/ruamel.yaml_1727980181547/work
 ruamel.yaml.clib @ file:///C:/b/abs_5fk8zi6n09/croot/ruamel.yaml.clib_1727769837359/work
 s3fs @ file:///C:/b/abs_ddtjx92ddb/croot/s3fs_1724924140381/work
-scikit-image @ file:///C:/b/abs_85dh_ywewv/croot/scikit-image_1726762076100/work
-scikit-learn @ file:///C:/b/abs_aajc9f7v6r/croot/scikit-learn_1722067652693/work/dist/scikit_learn-1.5.1-cp312-cp312-win_amd64.whl#sha256=96ed6defb86c154d2ff360afdbf0c37c33c4c729d4a15c9d8ada0b70fd817816
-scipy @ file:///C:/b/abs_efv75hqhju/croot/scipy_1717521501389/work/dist/scipy-1.13.1-cp312-cp312-win_amd64.whl#sha256=b29dba691773ea983857b31cad894f31623348583937b6f03783facfd7abc734
 Scrapy @ file:///C:/b/abs_b407wrcuij/croot/scrapy_1708714755460/work
 seaborn @ file:///C:/b/abs_ca2mi1rgmn/croot/seaborn_1718303534355/work
 semver @ file:///C:/b/abs_4bkbn3v6jp/croot/semver_1709243682483/work
@@ -359,7 +365,6 @@ xlwings @ file:///C:/b/abs_bc7ro1xk70/croot/xlwings_1725400109105/work
 xyzservices @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/xyzservices_1699548906163/work
 yapf @ file:///C:/b/abs_8aidayep18/croot/yapf_1708964372649/work
 yarl @ file:///C:/b/abs_00rcuicx5k/croot/yarl_1726015884215/work
-yfinance==0.2.52
 zict @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/zict_1699548979005/work
 zipp @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/zipp_1707493775475/work
 zope.interface @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/zope.interface_1699497164709/work
