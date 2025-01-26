@@ -11,7 +11,6 @@ import streamlit as slt
 import numpy as np
 import yfinance as yf
 from arch import arch_model
-import matplotlib.pyplot as plt
 import warnings
 warnings.filterwarnings("ignore")
 from scipy.linalg import sqrtm, inv
