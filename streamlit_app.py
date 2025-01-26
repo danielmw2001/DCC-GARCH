@@ -4,9 +4,14 @@ import streamlit as st
 # Set a title
 st.title("DCC-GARCH Portfolio Input")
 
-tabs = st.tabs(["Inputs","Outputs"])
+tabs = st.tabs(["Abour","Inputs","Outputs"])
 # Enter the number of assets
+
 with tabs[0]:
+    st.header('About this app')
+    st.write('I coded up the Dynamic-Conditional-Corrolation GARCH model as a pet project and played around with what you could do with it. Full methodology and code available here: .To use, enter your tickers and respective weights in your portfolio on the inputs page, and then switch to the outputs page to view your portfolios corollation and variance-covariance matricies in times of high, low and medium market stress. Optimal portfolio weightings for the your portfolios corrolation in this current market are also displayed, as well as VaR and CVaR found via Monte-Carlo simulations')
+
+with tabs[1]:
     n = st.number_input("Enter the number of assets in the portfolio", min_value=1, step=1, value=1)
 
     # Initialize session state for tickers and weights
@@ -52,7 +57,7 @@ with tabs[0]:
         st.warning("All asset weights must add to 1")
 
 
-with tabs[1]:
+with tabs[2]:
     if total_weight == 1.0 and all(w > 0 for w in st.session_state.weights) and valid == True:
         # Perform analysis
         Hts, predicted_vols, Rts = whole_thing(st.session_state.tickers, np.array(st.session_state.weights))
