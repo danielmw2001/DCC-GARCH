@@ -12,6 +12,7 @@ import numpy as np
 import yfinance as yf
 from arch import arch_model
 import warnings
+import matplotlib.pyplot as plt
 warnings.filterwarnings("ignore")
 from scipy.linalg import sqrtm, inv
 from datetime import datetime, timedelta
