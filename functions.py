@@ -111,9 +111,7 @@ class DCC:
             R_t = np.copy(D_inv @ Q_t @ D_inv)
             #gc.collect()
             #print(R_t,'RT',D_t,'Dt')
-            logging.basicConfig(level=logging.DEBUG)
-            logging.debug(f"R_t evaluated: {R_t}")
-
+            
             inv_Rt = np.linalg.inv(R_t)    
             # Compute log-likelihood contribution
             det_Rt = np.linalg.det(R_t)
@@ -258,7 +256,7 @@ tickers = ["AAPL", "AMZN", "TSLA"]
 
 def whole_thing(tickers = ["AAPL", "AMZN", "MSFT","NVDA"], w = np.array((0.2,0.2,0.3,0.3))):
 
-    data = Data(tickers, '10y')  # Ensure Data provides returns for the tickers
+    data = Data(tickers, '4y')  # Ensure Data provides returns for the tickers
     dcc = DCC(tickers, data.returns)
     
     # Run the entire DCC process
