@@ -396,7 +396,7 @@ def optimize_portfolio_variance(H):
 
     # Constraint: sum of weights = 1
     constraints = (
-        {'type': 'eq', 'fun': lambda w: np.sum(w) - 1},
+        {'type': 'eq', 'fun': lambda w: np.sum(w) - 0.99},
     )
 
     # Bounds: weights must be between 0 and 1 (no short selling)
