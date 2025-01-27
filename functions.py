@@ -6,6 +6,7 @@ Created on Wed Jan 22 18:04:06 2025
 @author: danmw
 """
 import gc
+import logging
 from arch import arch_model
 from scipy.optimize import minimize
 import streamlit as slt
@@ -109,7 +110,10 @@ class DCC:
             D_inv = np.diag(1 / D_t)
             R_t = np.copy(D_inv @ Q_t @ D_inv)
             #gc.collect()
-            print(R_t,'RT',D_t,'Dt')
+            #print(R_t,'RT',D_t,'Dt')
+            logging.basicConfig(level=logging.DEBUG)
+            logging.debug(f"R_t evaluated: {R_t}")
+
             inv_Rt = np.linalg.inv(R_t)    
             # Compute log-likelihood contribution
             det_Rt = np.linalg.det(R_t)
