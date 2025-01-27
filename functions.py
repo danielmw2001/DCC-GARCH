@@ -133,7 +133,7 @@ class DCC:
         """
         initial_params = [0.05, 0.9]  # Initial guesses for alpha and beta
         bounds = [(0, 1), (0, 1)]  # Bounds for alpha and beta
-        constraints = [{'type': 'ineq', 'fun': lambda x: 0.9 - sum(x)},  # Ensure alpha + beta < 1
+        constraints = [{'type': 'ineq', 'fun': lambda x: 0.99 - sum(x)},  # Ensure alpha + beta < 1
                     {'type': 'ineq', 'fun': lambda x: x[0]},       # alpha >= 0
                     {'type': 'ineq', 'fun': lambda x: x[1]}]       # beta >= 0
 
