@@ -110,7 +110,8 @@ class DCC:
             D_inv = np.diag(1 / D_t)
             R_t = np.copy(D_inv @ Q_t @ D_inv)
             #gc.collect()
-            #print(R_t,'RT',D_t,'Dt')
+            print(R_t,'RT',D_t,'Dt')
+        
             
             inv_Rt = np.linalg.inv(R_t)    
             # Compute log-likelihood contribution
