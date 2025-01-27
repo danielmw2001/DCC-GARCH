@@ -143,7 +143,7 @@ class DCC:
             bounds=bounds,
             constraints=constraints,
             method="SLSQP",
-            options={'ftol': 1e-9}  # Reduce tolerance for more precision
+            #options={'ftol': 1e-9}  # Reduce tolerance for more precision
 
         )
 
