@@ -413,7 +413,7 @@ def optimize_portfolio_variance(H):
         method='SLSQP',
         bounds=bounds,
         constraints=constraints,
-        options={'ftol': 1e-9}  # Reduce tolerance for more precision
+        #options={'ftol': 1e-9}  # Reduce tolerance for more precision
 
     )
 
