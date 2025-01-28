@@ -49,7 +49,7 @@ class DCC:
         all_sigma = []
         all_standardised_resid = []
         for t in self.tickers:
-            garch_model = arch_model(self.returns[t], vol='Garch', p=1, q=1)
+            garch_model = arch_model(self.returns[t], vol='Garch', p=1, q=1, mean='Zero')
             uni_var = garch_model.fit(disp="off")
             sigma_t = np.array(uni_var.conditional_volatility)
             standardise_resid = uni_var.resid / sigma_t
