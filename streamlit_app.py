@@ -7,7 +7,7 @@ def clear_session_state():
     for key in st.session_state.keys():
         del st.session_state[key]
         
-example_tickers = "AAPL,JPM,AMZN,DIS,HSBC,MSFT" 
+example_tickers = "AAPL,JPM,A,DIS,HSBC,MSFT" 
 example_weights = "0.2,0.2,0.2,0.1,0.1,0.2"
 st.title("DCC-GARCH Tool")
 predicted_vols = []
@@ -28,7 +28,7 @@ with tabs[1]:
     if st.button("Autofill with example"):
         tickers_input = example_tickers
         weights_input = example_weights
-        st.success("Example autofilled. Check the Output tab. Stocks: AAPL,JPM,GOOGL,AMZN. Weights:0.4,0.3,0.2,0.1")
+        st.success("Example autofilled. Check the Output tab. Stocks: AAPL,JPM,A,DIS,HSBC,MSFT. Weights:0.2,0.2,0.2,0.1,0.1,0.2")
         if st.button("Add my own"):
             clear_session_state()
             st.rerun()
@@ -113,8 +113,8 @@ def display_multi_asset_metrics(period_name, corr_matrix, cov_matrix, portfolio_
         )
     with col3:
         st.write("##### Portfolio Volatility")
-        st.write(f"Portfolio Volatility: {float(portfolio_vol) * 100:.3f}%")
-
+        st.write(f"Daily portfolio Volatility: {float(portfolio_vol) * 100:.3f}%")
+        st.write(f"Annual portfolio Volatility: {float(portfolio_vol) * 100 * np.sqrt(252):.3f}%")
 with tabs[2]:
     if 'results' in st.session_state:
         results = st.session_state.results
@@ -171,9 +171,22 @@ with tabs[3]:
                 )
             
             with col6:
+                st.write(f'#### Vars and CVaRs')
                 if predicted_vols:
-                    st.write(f"##### 1 day VaR: {float(var(predicted_vols[-1],1)) * 100:.3f}%")
-                    st.write(f"##### 5 day VaR: {float(var(predicted_vols[-1],5)) * 100:.3f}%")
+                    days =[1,5,252]
+                    periods = ['Daily','Weekly','Annual']
+                    for days, period in zip(days,periods):
+                        var, cvar = both_vars(predicted_vols[-1], days)
+                        st.write(period,'VaR', f'{float(var) * 100:.3f}%')
+                        st.write(period,'CVaR', f'{float(cvar) * 100:.3f}%')
+                         
+                    # st.write(f"##### Daily VaR: {float(var(predicted_vols[-1],1)) * 100:.3f}%")
+                    # st.write(f"##### Weekly VaR: {float(var(predicted_vols[-1],5)) * 100:.3f}%")
+                    # st.write(f"##### Annual  VaR: {float(var(predicted_vols[-1],252)) * 100:.3f}%")
+                    # st.write(f"##### Daily CVaR: {float(cvar(predicted_vols[-1],1)) * 100:.3f}%")
+                    # st.write(f"##### Weekly CVaR: {float(cvar(predicted_vols[-1],5)) * 100:.3f}%")
+                    # st.write(f"##### Annual CVaR: {float(cvar(predicted_vols[-1],252)) * 100:.3f}%")
+
 
             # Display current portfolio metrics
             st.write("#### Current Portfolio Metrics")
