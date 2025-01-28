@@ -32,20 +32,11 @@ class Data:
 
 class DCC:
     def __init__(self, tickers, returns):
-        """
-        Initialize DCC model with asset tickers and their returns.
-        """
         self.tickers = tickers
         self.returns = returns
 
 
     def standardising_residuals(self):
-        """
-        Fit GARCH(1,1) models for each asset and compute standardized residuals.
-        Returns:
-            all_var (ndarray): Conditional volatilities for all assets.
-            all_standardised_resids (ndarray): Standardized residuals for all assets.
-        """
         all_sigma = []
         all_standardised_resid = []
         for t in self.tickers:
@@ -61,13 +52,6 @@ class DCC:
         return all_var, all_standardised_resids
 
     def find_Qbar(self, all_standardised_resids):
-        """
-        Compute the unconditional covariance matrix (Qbar).
-        Args:
-            all_standardised_resids (ndarray): Standardized residuals for all assets.
-        Returns:
-            Qbar (ndarray): Unconditional covariance matrix.
-        """
         Qt = sum(np.outer(resid, resid) for resid in all_standardised_resids)
         Qbar = Qt / len(all_standardised_resids)
         return Qbar
@@ -85,15 +69,6 @@ class DCC:
 
 
     def log_likelihood(self, params, Qbar, standardized_residuals):
-        """
-        Compute the negative log-likelihood for the DCC model.
-        Args:
-            params (list): [alpha, beta] parameters.
-            Qbar (ndarray): Unconditional covariance matrix.
-            standardized_residuals (ndarray): Standardized residuals for all assets.
-        Returns:
-            float: Negative log-likelihood.
-        """
         alpha, beta = params
         T = len(standardized_residuals)
         Q_t = Qbar
@@ -116,14 +91,6 @@ class DCC:
         return -log_likelihood  
 
     def estimate_alpha_beta(self, Qbar, standardized_residuals):
-        """
-        Estimate alpha and beta by minimizing the negative log-likelihood.
-        Args:
-            Qbar (ndarray): Unconditional covariance matrix.
-            standardized_residuals (ndarray): Standardized residuals for all assets.
-        Returns:
-            tuple: Optimized alpha and beta.
-        """
         initial_params = [0.05, 0.9] 
         bounds = [(0, 1), (0, 1)]  
         constraints = [{'type': 'ineq', 'fun': lambda x: 0.99 - sum(x)},  
@@ -166,27 +133,10 @@ class DCC:
     
 
 def portfolio_vol(S,w):
-    ''' 
-    Estimate portfolio variance
-    
-    Args:
-        S: Coviance matrix
-        w: Weighting of portfolio
-        Returns:
-        int: Volatility for time t    
-    '''
     sd = np.sqrt(w.T @ S @ w)
     return sd
 
 def true_vol(tickers, start,end):
-    ''' 
-    Estimate realised volatility by finding daily var-cov matrix
-    
-    Args:
-        Tickers: tickers for yfinance
-        start: start date 
-        end: end date
-    '''
     data = yf.Tickers(tickers)
     prices = data.history(start = start, end = end , interval='5m',progress=False)["Close"]
     returns = np.log(prices / prices.shift(1)).dropna()
@@ -278,12 +228,6 @@ def whole_thing(tickers = ["AAPL", "AMZN", "MSFT","NVDA"], w = np.array((0.2,0.2
 
 
 def portfolio_returns(w, returns_df):
-    """
-    returns_df: shape (T, 3)  -- each row is [r_AAPL, r_AMZN, r_TSLA]
-    w: shape (3,) -- [w_AAPL, w_AMZN, w_TSLA]
-    Returns a list or array of portfolio returns, length T
-    """
-    
     return returns_df @ w
 
 def backtest(all_vols, returns_df, w=np.array([0.2, 0.2, 0.6])):
@@ -344,19 +288,7 @@ def hml(all_vols, Hts, Rts):
 
 
 def optimize_portfolio_variance(H):
-    """
-    Optimize portfolio weights to minimize variance w^T * H * w.
-
-    Args:
-        H (ndarray): Covariance matrix (n x n) at a given time.
-
-    Returns:
-        ndarray: Optimal weights (n,) that minimize portfolio variance under constraints.
-    """
     n = H.shape[0]
-
-
-
     constraints = (
         {'type': 'eq', 'fun': lambda w: np.sum(w) - 1},
     )
@@ -384,15 +316,6 @@ def optimize_portfolio_variance(H):
 import yfinance as yf
 
 def is_ticker_valid(ticker):
-    """
-    Check if a ticker is valid by attempting to fetch its data.
-
-    Args:
-        ticker (str): The ticker symbol to validate.
-
-    Returns:
-        bool: True if the ticker is valid, False otherwise.
-    """
     try:
         data = yf.Ticker(ticker).history(period="1d")
         return not data.empty  # Valid if data is not empty
