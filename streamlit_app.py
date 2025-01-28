@@ -142,7 +142,6 @@ with tabs[3]:
     if 'results' in st.session_state:
         results = st.session_state.results
 
-        st.write("### Present Day Analysis")
         
         if len(results['tickers']) == 1:
             st.warning("Covariance and correlations unavailable, only 1 asset selected.")
