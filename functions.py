@@ -399,6 +399,16 @@ def is_ticker_valid(ticker):
     except Exception:
         return False
 
-def var(p_vol, days, simulations = 1000):
-    x = np.random.normal(loc = 0, scale = p_vol,size = simulations)
-    return - np.percentile(x, 5)*np.sqrt(days)
+def both_vars(p_vol, days, simulations = 1000):
+    x = np.random.normal(loc = 0, scale = p_vol*np.sqrt(days) ,size = simulations)
+    var = - np.percentile(x, 5)
+    tail_losses = x[x<=-var]
+    cvar = - np.mean(tail_losses)
+    return var, cvar
+
+def cvar(p_vol, days, simulations = 1000):
+    x = np.random.normal(loc = 0, scale = p_vol*np.sqrt(days) ,size = simulations)
+    var = - np.percentile(x, 5)
+    tail_losses = x[x<=var]
+    cvar = - np.mean(tail_losses)
+    return var, cvar
