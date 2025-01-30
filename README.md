@@ -1,6 +1,6 @@
 ### For methodology, see PDF
 ### WIP: 
--Refactor code to be object oriented 
+-Refactor ugly code to be object oriented, get rid of redundant code
 
 -Notebook of backtesting
 
