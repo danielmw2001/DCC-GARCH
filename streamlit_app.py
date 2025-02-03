@@ -10,6 +10,7 @@ def clear_session_state():
 example_tickers = "AAPL,JPM,A,DIS,HSBC,MSFT" 
 example_weights = "0.2,0.2,0.2,0.1,0.1,0.2"
 st.title("DCC-GARCH Tool")
+st.write('First run will take a minute as the server starts up')
 predicted_vols = []
 tabs = st.tabs(["About", "Inputs", "Historical Analysis", "Present Day Analysis"])
 
