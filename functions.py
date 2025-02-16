@@ -11,7 +11,6 @@ from scipy.optimize import minimize
 import streamlit as slt
 import numpy as np
 import yfinance as yf
-from arch import arch_model
 import matplotlib.pyplot as plt
 import warnings
 warnings.filterwarnings("ignore")
@@ -381,7 +380,6 @@ def optimize_portfolio_variance(H):
 
     return result.x
 
-import yfinance as yf
 
 def is_ticker_valid(ticker):
     """
