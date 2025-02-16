@@ -63,17 +63,7 @@ with tabs[1]:
                 w_min = optimize_portfolio_variance(Hts[-1])
                 
                 # Store results temporarily in session state
-                st.session_state.results = {
-                    'Hts': Hts,
-                    'predicted_vols': predicted_vols,
-                    'Rts': Rts,
-                    'avg_corrs': avg_corrs,
-                    'avg_covs': avg_covs,
-                    'avg_vols': avg_vols,
-                    'w_min': w_min,
-                    'tickers': tickers,
-                    'weights': weights
-                }
+                st.session_state.results = {'Hts': Hts,'predicted_vols': predicted_vols, 'Rts': Rts,'avg_corrs': avg_corrs,'avg_covs': avg_covs,'avg_vols': avg_vols,'w_min': w_min,'tickers': tickers, 'weights': weights}
 
 def display_single_asset_metrics(period_name, volatility):
     st.write(f"#### {period_name}")
@@ -81,37 +71,23 @@ def display_single_asset_metrics(period_name, volatility):
 
 def display_multi_asset_metrics(period_name, corr_matrix, cov_matrix, portfolio_vol, tickers):
     st.write(f"#### {period_name}")
-    corr_df = pd.DataFrame(
-        np.squeeze(corr_matrix),
+    corr_df = pd.DataFrame(np.squeeze(corr_matrix),
         index=tickers,
-        columns=tickers
-    )
+        columns=tickers)
     
     cov_df = pd.DataFrame(
         np.squeeze(cov_matrix),
-        index=tickers,
-        columns=tickers
-    )
+        index=tickers, columns=tickers)
     
     col1, col2, col3 = st.columns(3, gap="large")
     
     with col1:
         st.write("##### Correlation Matrix")
-        st.dataframe(
-            corr_df.style
-                .format("{:.2f}")
-                .background_gradient(cmap="coolwarm"),
-                use_container_width=True
-        )
+        st.dataframe(corr_df.style.format("{:.2f}").background_gradient(cmap="coolwarm"),use_container_width=True)
     
     with col2:
         st.write("##### Variance Covariance Matrix") 
-        st.dataframe(
-            cov_df.style
-                .format("{:.5f}") 
-                .background_gradient(cmap="coolwarm"),
-                    use_container_width=True
-        )
+        st.dataframe(cov_df.styleformat("{:.5f}").background_gradient(cmap="coolwarm"),use_container_width=True)
     with col3:
         st.write("##### Portfolio Volatility")
         st.write(f"Daily portfolio Volatility: {float(portfolio_vol) * 100:.3f}%")
@@ -129,13 +105,8 @@ with tabs[2]:
                 
             st.write(f'###### If matricies display badly, hover over and expand')
             for i, period in enumerate(periods):
-                display_multi_asset_metrics(
-                    period, 
-                    results['avg_corrs'][i], 
-                    results['avg_covs'][i], 
-                    results['avg_vols'][i], 
-                    results['tickers']
-                )
+                display_multi_asset_metrics(period, results['avg_corrs'][i], results['avg_covs'][i], results['avg_vols'][i], 
+                                            results['tickers'])
     else:
         st.error("Please enter valid inputs in the Inputs tab.")
 
@@ -147,10 +118,8 @@ with tabs[3]:
         
         if len(results['tickers']) == 1:
             st.warning("Covariance and correlations unavailable, only 1 asset selected.")
-            display_single_asset_metrics(
-                "Current Market Conditions", 
-                np.sqrt(results['Hts'][-1].diagonal().mean())
-            )
+            display_single_asset_metrics("Current Market Conditions", 
+                np.sqrt(results['Hts'][-1].diagonal().mean()))
         else:
             # Extract current day's values
             current_corr_matrix = results['Rts'][-1]  # Current correlation matrix
@@ -162,14 +131,11 @@ with tabs[3]:
             
             with col5:
                 st.write("#### Current Variance-Minimizing Portfolio Weights")
-                st.dataframe(
-                    pd.DataFrame(
+                st.dataframe(pd.DataFrame(
                         results['w_min'], 
                         columns=['Optimal weighting'], 
-                        index=results['tickers']
-                    ).style.format("{:.3f}"),
-                    use_container_width=True
-                )
+                        index=results['tickers']).style.format("{:.3f}"),
+                    use_container_width=True)
             
             with col6:
                 st.write(f'#### Vars and CVaRs')
@@ -191,12 +157,6 @@ with tabs[3]:
 
             # Display current portfolio metrics
             st.write("#### Current Portfolio Metrics")
-            display_multi_asset_metrics(
-                "Current Market Conditions", 
-                current_corr_matrix, 
-                current_cov_matrix, 
-                current_volatility, 
-                results['tickers']
-            )
+            display_multi_asset_metrics("Current Market Conditions", current_corr_matrix, current_cov_matrix, current_volatility, results['tickers'])
     else:
         st.error("Please enter valid inputs in the Inputs tab.")
