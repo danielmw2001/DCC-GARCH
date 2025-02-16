@@ -87,7 +87,7 @@ def display_multi_asset_metrics(period_name, corr_matrix, cov_matrix, portfolio_
     
     with col2:
         st.write("##### Variance Covariance Matrix") 
-        st.dataframe(cov_df.styleformat("{:.5f}").background_gradient(cmap="coolwarm"),use_container_width=True)
+        st.dataframe(cov_df.style.format("{:.5f}").background_gradient(cmap="coolwarm"),use_container_width=True)
     with col3:
         st.write("##### Portfolio Volatility")
         st.write(f"Daily portfolio Volatility: {float(portfolio_vol) * 100:.3f}%")
