@@ -6,6 +6,7 @@ Created on Wed Jan 22 18:04:06 2025
 @author: danmw
 """
 import gc
+import streamlit as st
 from arch import arch_model
 from scipy.optimize import minimize
 import streamlit as slt
@@ -394,7 +395,10 @@ def is_ticker_valid(ticker):
     try:
         data = yf.Ticker(ticker).history(period="1d")
         return not data.empty  # Valid if data is not empty
-    except Exception:
+    except Exception as e:
+        if "Too Many Requests" in str(e) or "Rate limited" in str(e):
+            st.warning(e)
+
         return False
 
 def both_vars(p_vol, days, simulations = 1000):
