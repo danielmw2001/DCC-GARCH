@@ -319,10 +319,11 @@ def hml(all_vols, Hts, Rts):
     valid_indices = [highest_t, median_t, lowest_t]
     
     for i in valid_indices:
+        print(i)
         if i < 6:
-            avg_corrs.append(None)
-            avg_covs.append(None)
-            avg_vols.append(None)
+            avg_corrs.append(np.mean(Rts[0:6],axis=0))
+            avg_covs.append(np.mean(Hts[0:6],axis=0))
+            avg_vols.append(np.mean(all_vols[0:6],axis=0))
             continue
         
 
