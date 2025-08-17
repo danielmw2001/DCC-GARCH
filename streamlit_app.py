@@ -17,7 +17,7 @@ tabs = st.tabs(["About", "Inputs", "Historical Analysis", "Present Day Analysis"
 with tabs[0]:
     st.write("##### About")
     st.write('''This script implements the Dynamic Conditional Correlation GARCH (DCC-GARCH) to analyse an uploaded portfolio. Full code and methodology explanation found in the repo here: https://github.com/danielmw2001/DCC-GARCH/tree/main 
-             \n DCC-GARCH improves on the univariate and non-dynamic GARCH models modelling the covariance within portfolios, and how that covariance dynamically changes depending on markey conditions.''')
+             \n DCC-GARCH improves on the univariate and non-dynamic GARCH models modelling the covariance within portfolios, and how that covariance dynamically changes depending on market conditions.''')
     st.write("##### Input Tab")
     st.write('Input tickers and respective weights, seperated by commas, let it run then move to the historical analysis tab')
     st.write("##### Historical Analysis Tab")
@@ -160,3 +160,4 @@ with tabs[3]:
             display_multi_asset_metrics("Current Market Conditions", current_corr_matrix, current_cov_matrix, current_volatility, results['tickers'])
     else:
         st.error("Please enter valid inputs in the Inputs tab.")
+
