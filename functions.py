@@ -23,7 +23,7 @@ np.random.seed(42)
 class Data:
     def __init__(self, tickers, period):
         data = yf.Tickers(tickers)
-        prices = data.history(period=period)["Close"]
+        prices = data.history(period=period,threads=False)["Close"]
         
         returns = np.log(prices / prices.shift(1)).dropna()
         self.prices = prices
